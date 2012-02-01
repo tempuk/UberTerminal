@@ -1,0 +1,17 @@
+AddDefaultCharset UTF-8
+
+AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css
+application/x-javascript text/javascript
+
+FileETag none
+
+# Turn on Expires and set default to 0
+ExpiresActive On
+
+ExpiresByType application/x-javascript "access plus 1 years"
+ExpiresByType text/css "access plus 1 years"
+ExpiresByType image/x-icon "access plus 1 years"
+
+ExpiresByType text/html "access plus 30 minutes"
+
+
