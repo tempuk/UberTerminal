@@ -11,7 +11,6 @@
             $("form").hide();
         }
         commands.add([new kilon.org.models.CommandModel({cmd: 'label', label: cmd}), new kilon.org.models.CommandModel({cmd: cmd})]);
-        
     });
     
     var terminalView = new kilon.org.views.TerminalView({
@@ -23,6 +22,13 @@
         el: $("form"),
         model: input
     });
+    
+
+    // set some content
+    input.set('command', 'welcome');
+    
+    // foxus the cursor
     inputView.focus();
+    
     
 }());

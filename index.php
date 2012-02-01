@@ -15,8 +15,7 @@
     
     <br>
     
-    <div id="terminal">UberTerminal 0.1 By Uzi Kilon &copy;2012
-Type "help" for available commands</div>
+    <div id="terminal"></div>
     <form onsubmit="return false">
         <label for="q">$</label>
         <input type="text" style="width: 90%" name="q" id="q" autocomplete="off">

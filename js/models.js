@@ -45,7 +45,13 @@ window.kilon.org.models = kilon.org.models || {};
     CommandFactory.add(new Command('what', "Active Project", function(){
         return [
             'Active Projects:',
-            'UberTerminal (this site) <a href="http://kilon.org/">http://kilon.org/</a>'
+            'UberTerminal (this site) - <a href="http://kilon.org/">http://kilon.org/</a> | <a href="https://github.com/uzikilon/UberTerminal">https://github.com/uzikilon/UberTerminal</a>',
+        ];
+    }));
+    CommandFactory.add(new Command('welcome', "Welcome Message", function(){
+        return [
+            'UberTerminal 0.1 By Uzi Kilon &copy;2012',
+            'Type "help" for available commands',
         ];
     }));
     
