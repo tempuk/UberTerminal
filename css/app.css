@@ -1,0 +1,22 @@
+* {
+    background-color: #000;
+    color: #55D839;
+    font: normal 14px Consolas,Monaco,Courier New,monospace;
+}
+input {
+    border: 0;
+}
+#terminal, header {
+    width: 100%;
+    white-space: pre;
+}
+p, input, label {
+    margin: 0;
+    padding: 2px 0;
+}
+input {
+    padding: 0 !important;
+}
+*:focus {
+    outline: none;
+}
