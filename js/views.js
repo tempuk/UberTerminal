@@ -47,11 +47,12 @@ window.kilon.org.views = kilon.org.views || {};
             if(this.collection.length) {
                 var self = this,
                     data = [];
-                this.collection.each(function(model){
+                this.collection.each(function(model, i){
                     model.get('cmd', function(s){
-                        data.push(s);
+                        data[i] = (s);
                         if (data.length == self.collection.length) {
-                            var tempalte = _.template(self.template, {data: data});
+                            console.log(data);
+                            var tempalte = _.template(self.template, {data:  data});
                             self.$el.html(tempalte);
                         }
                     });

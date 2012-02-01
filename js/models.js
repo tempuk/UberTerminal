@@ -9,7 +9,12 @@ window.kilon.org.models = kilon.org.models || {};
         },
         run: function(key, callback){
             var action = this._commands[key] || null;
-            return null != action ? action.run.call(this, callback) : ["-shell: " + key.split(/\s/)[0] + ": command not found"];
+            if(action) {
+                action.run.call(this, callback);
+            }
+            else {
+                callback(["-shell: " + key.split(/\s/)[0] + ": command not found"]);
+            }
         },
     };
     
