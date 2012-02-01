@@ -45,8 +45,17 @@ window.kilon.org.views = kilon.org.views || {};
         },
         render: function(){
             if(this.collection.length) {
-                var tempalte = _.template(this.template, {collection: this.collection});
-                this.$el.html(tempalte);
+                var self = this,
+                    data = [];
+                this.collection.each(function(model){
+                    model.get('cmd', function(s){
+                        data.push(s);
+                        if (data.length == self.collection.length) {
+                            var tempalte = _.template(self.template, {data: data});
+                            self.$el.html(tempalte);
+                        }
+                    });
+                });
             }
             else {
                 this.clear();
@@ -55,7 +64,7 @@ window.kilon.org.views = kilon.org.views || {};
         clear: function(){
             this.$el.empty();
         },
-        template: '<%collection.each(function(model){ %><%=model.get("cmd").join("\n") + "\n" %><%})%>'
+        template: '<%_.each(data, function(arr){ %><%=arr.join("\n") + "\n" %><%})%>'
     });
     
     ns.InputView = InputView;

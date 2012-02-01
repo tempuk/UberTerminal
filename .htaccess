@@ -1,6 +1,6 @@
 AddDefaultCharset UTF-8
 
-AddOutputFilterByType DEFLATE text/html text/css application/x-javascript
+AddOutputFilterByType DEFLATE application/json text/html text/css application/x-javascript
 
 FileETag none
 
@@ -12,5 +12,5 @@ ExpiresByType text/css "access plus 1 years"
 ExpiresByType image/x-icon "access plus 1 years"
 
 ExpiresByType text/html "access plus 30 minutes"
-
+ExpiresByType application/json "access plus 30 minutes"
 
