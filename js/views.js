@@ -51,7 +51,6 @@ window.kilon.org.views = kilon.org.views || {};
                     model.get('cmd', function(s){
                         data[i] = (s);
                         if (data.length == self.collection.length) {
-                            console.log(data);
                             var tempalte = _.template(self.template, {data:  data});
                             self.$el.html(tempalte);
                         }
