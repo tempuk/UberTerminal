@@ -2,7 +2,7 @@ window.kilon = window.kilon || {};
 window.kilon.org = kilon.org || {};
 window.kilon.org.models = kilon.org.models || {};
 (function(ns){
-    var CommandFactory = {
+    var CommandManager = {
         _commands: {},
         add: function(cmd){
             this._commands[cmd.name] = cmd;
@@ -25,27 +25,27 @@ window.kilon.org.models = kilon.org.models || {};
         this.events = {};
     }
     
-    CommandFactory.add(new Command('date', 'show date', function(callback){
+    CommandManager.add(new Command('date', 'show date', function(callback){
         callback([(new Date().toString())]);
     }));
     
-    CommandFactory.add(new Command('agent', 'show user agent', function(callback){
+    CommandManager.add(new Command('agent', 'show user agent', function(callback){
         $.getJSON('/rest/basic.php?action=host', function(data){
             callback([data['HTTP_USER_AGENT']]);
         });
     }));
     
-    CommandFactory.add(new Command('ip', 'show ip address', function(callback){
+    CommandManager.add(new Command('ip', 'show ip address', function(callback){
         $.getJSON('/rest/basic.php?action=host', function(data){
             callback([data['REMOTE_ADDR']]);
         });
     }));
 
-    CommandFactory.add(new Command('label', null, function(callback){
+    CommandManager.add(new Command('label', null, function(callback){
         callback(["$"]);
     }));
     
-    CommandFactory.add(new Command('who', "about me", function(callback){
+    CommandManager.add(new Command('who', "about me", function(callback){
         callback([
             'Uzi Kilon',
             'Senior Software Engineer',
@@ -56,26 +56,26 @@ window.kilon.org.models = kilon.org.models || {};
         ]);
     }));
     
-    CommandFactory.add(new Command('what', "active project", function(callback){
+    CommandManager.add(new Command('what', "active project", function(callback){
         callback([
             'Current Projects:',
             'UberTerminal (this site) - <a href="http://kilon.org/">http://kilon.org/</a> | <a href="https://github.com/uzikilon/UberTerminal">https://github.com/uzikilon/UberTerminal</a>',
         ]);
     }));
-    CommandFactory.add(new Command('welcome', "welcome message", function(callback){
+    CommandManager.add(new Command('welcome', "welcome message", function(callback){
         callback([
             'UberTerminal 0.1 By Uzi Kilon &copy;2012',
             'Type "help" for available commands',
         ]);
     }));
     
-    CommandFactory.add(new Command('clear', 'clear window'));
+    CommandManager.add(new Command('clear', 'clear window'));
     
-    CommandFactory.add(new Command('exit', 'exit the terminal', function(callback){
+    CommandManager.add(new Command('exit', 'exit the terminal', function(callback){
         callback(["logout", "", "[Process completed]"]);
     }));
     
-    CommandFactory.add(new Command('help', 'show this message', function(callback){
+    CommandManager.add(new Command('help', 'show this message', function(callback){
         var data = ["<u>available commands:</u>"];
         for (var name in this._commands) {
             var command = this._commands[name];
@@ -90,7 +90,7 @@ window.kilon.org.models = kilon.org.models || {};
         get: function(attribute, callback) {
             var self = this,
                 cmd = Backbone.Model.prototype.get.call(this, attribute);
-            CommandFactory.run(cmd, function(value){
+            CommandManager.run(cmd, function(value){
                 if(cmd === "label") {
                     value = [value[0] + " " + Backbone.Model.prototype.get.call(self, 'label')];
                 }
